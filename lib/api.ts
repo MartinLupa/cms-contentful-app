@@ -30,16 +30,12 @@ const POST_GRAPHQL_FIELDS = `
 
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
   return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          preview
-            ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
-            : process.env.CONTENTFUL_ACCESS_TOKEN
-        }`,
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
       },
       body: JSON.stringify({ query }),
       next: { tags: ["posts"] },
@@ -55,10 +51,10 @@ function extractPostEntries(fetchResponse: any): any[] {
   return fetchResponse?.data?.postCollection?.items;
 }
 
-export async function getPreviewPostBySlug(slug: string | null): Promise<any> {
+export async function getPostBySlug(slug: string | null): Promise<any> {
   const entry = await fetchGraphQL(
     `query {
-      postCollection(where: { slug: "${slug}" }, preview: true, limit: 1) {
+      postCollection(where: { slug: "${slug}" }, limit: 1) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -69,52 +65,27 @@ export async function getPreviewPostBySlug(slug: string | null): Promise<any> {
   return extractPost(entry);
 }
 
-export async function getAllPosts(isDraftMode: boolean): Promise<any[]> {
+export async function getAllPosts(): Promise<any[]> {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(where: { slug_exists: true }, order: date_DESC, preview: ${
-        isDraftMode ? "true" : "false"
-      }) {
+      postCollection(where: { slug_exists: true }, order: date_DESC) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
       }
-    }`,
-    isDraftMode,
-  );
+    }`);
   return extractPostEntries(entries);
 }
 
-export async function getPostAndMorePosts(
-  slug: string,
-  preview: boolean,
-): Promise<any> {
-  const entry = await fetchGraphQL(
-    `query {
-      postCollection(where: { slug: "${slug}" }, preview: ${
-      preview ? "true" : "false"
-    }, limit: 1) {
-        items {
-          ${POST_GRAPHQL_FIELDS}
-        }
-      }
-    }`,
-    preview,
-  );
+// Show improvement: instead of fetching ALL posts information (imagine having 1000), instead only fetch urls
+export async function getAllPostUrls(): Promise<any[]> {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(where: { slug_not_in: "${slug}" }, order: date_DESC, preview: ${
-      preview ? "true" : "false"
-    }, limit: 2) {
+      postCollection(where: { slug_exists: true }, order: date_DESC) {
         items {
-          ${POST_GRAPHQL_FIELDS}
+          slug
         }
       }
-    }`,
-    preview,
-  );
-  return {
-    post: extractPost(entry),
-    morePosts: extractPostEntries(entries),
-  };
+    }`);
+  return extractPostEntries(entries);
 }

@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
+import { EXAMPLE_PATH, CMS_NAME, CMS_URL } from "@/lib/constants";
 
 export const metadata = {
   title: `Next.js and ${CMS_NAME} Example`,
@@ -12,6 +12,33 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+
+function Header() {
+  return (
+    <section className="flex-col md:flex-row flex items-center md:justify-between container mx-auto px-5 mt-16 mb-16 md:mb-12">
+      <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
+        Blog.
+      </h1>
+      <h2 className="text-center md:text-left text-lg mt-5 md:pl-8">
+        A statically generated blog example using{" "}
+        <a
+          href="https://nextjs.org/"
+          className="underline hover:text-success duration-200 transition-colors"
+        >
+          Next.js
+        </a>{" "}
+        and{" "}
+        <a
+          href={CMS_URL}
+          className="underline hover:text-success duration-200 transition-colors"
+        >
+          {CMS_NAME}
+        </a>
+        .
+      </h2>
+    </section>
+  );
+}
 
 function Footer() {
   return (
@@ -50,6 +77,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <section className="min-h-screen">
+          <Header />
           <main>{children}</main>
           <Footer />
         </section>

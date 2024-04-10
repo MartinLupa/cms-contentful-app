@@ -1,16 +1,14 @@
 import Link from "next/link";
-import { draftMode } from "next/headers";
 
-import MoreStories from "../../more-stories";
-import Avatar from "../../avatar";
-import Date from "../../date";
-import CoverImage from "../../cover-image";
+import Avatar from "../../../components/Avatar";
+import Date from "../../../components/Date";
+import CoverImage from "../../../components/CoverImage";
 
 import { Markdown } from "@/lib/markdown";
-import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
+import { getAllPostUrls, getAllPosts, getPostBySlug } from "@/lib/api";
 
 export async function generateStaticParams() {
-  const allPosts = await getAllPosts(false);
+  const allPosts = await getAllPosts();
 
   return allPosts.map((post) => ({
     slug: post.slug,
@@ -22,14 +20,13 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const { isEnabled } = draftMode();
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
+  const post = await getPostBySlug(params.slug);
 
   return (
     <div className="container mx-auto px-5">
       <h2 className="mb-20 mt-8 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
         <Link href="/" className="hover:underline">
-          Blog
+          Home
         </Link>
         .
       </h2>
@@ -62,8 +59,7 @@ export default async function PostPage({
           </div>
         </div>
       </article>
-      <hr className="border-accent-2 mt-28 mb-24" />
-      <MoreStories morePosts={morePosts} />
+      <hr className="border-accent-2 mt-28" />
     </div>
   );
 }

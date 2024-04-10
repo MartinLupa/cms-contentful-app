@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 
 import Avatar from "../../../components/Avatar";
@@ -7,13 +8,13 @@ import CoverImage from "../../../components/CoverImage";
 import { Markdown } from "@/lib/markdown";
 import { getAllPostUrls, getAllPosts, getPostBySlug } from "@/lib/api";
 
-export async function generateStaticParams() {
-  const allPosts = await getAllPosts();
+// export async function generateStaticParams() {
+//   const allPosts = await getAllPosts();
 
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+//   return allPosts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }
 
 export default async function PostPage({
   params,

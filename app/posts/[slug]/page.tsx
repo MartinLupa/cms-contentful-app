@@ -1,3 +1,4 @@
+// "use client"
 import Link from "next/link";
 
 import Avatar from "../../../components/Avatar";
@@ -5,7 +6,7 @@ import Date from "../../../components/Date";
 import CoverImage from "../../../components/CoverImage";
 
 import { Markdown } from "@/lib/markdown";
-import { getAllPostUrls, getAllPosts, getPostBySlug } from "@/lib/api";
+import { getAllPosts, getPostBySlug } from "@/lib/api";
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts();

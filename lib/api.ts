@@ -28,14 +28,14 @@ const POST_GRAPHQL_FIELDS = `
   }
 `;
 
-async function fetchGraphQL(query: string, preview = false): Promise<any> {
+async function fetchGraphQL(query: string): Promise<any> {
   return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
+    `https://graphql.contentful.com/content/v1/spaces/yo0mp2d5sbe1/environments/master`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+        Authorization: `Bearer 9MiGVDtmFNl9rS_LhR601WjBfOQqOdiJDBnfpMUnJuo`,
       },
       body: JSON.stringify({ query }),
       next: { tags: ["posts"] },
@@ -59,8 +59,7 @@ export async function getPostBySlug(slug: string | null): Promise<any> {
           ${POST_GRAPHQL_FIELDS}
         }
       }
-    }`,
-    true,
+    }`
   );
   return extractPost(entry);
 }

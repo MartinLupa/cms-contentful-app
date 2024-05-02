@@ -1,59 +1,52 @@
-# A statically generated blog example using Next.js and Contentful
+# Hack Your Future - Next.js + Contentful workshop
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using [Contentful](https://www.contentful.com/) as the data source.
+Welcome to the repo for this workshop!
 
-## Demo
+## What we will talk about:
+- What is a full-stack framework
+- Next.js  
+- What are the different rendering strategies you can chose from (use cases and benefits) - 
+  - Client Side Rendering (CSR)
+  - Server Side Rendering (SSR)
+  - Static Site Generation (SSG).
+- Client Components and Server Components
+- Brief intro to the concept of a CMS. We will specifically use Contentful for this project.
 
-### [https://app-router-contentful.vercel.app/](https://app-router-contentful.vercel.app/)
+## It would be great if you can check these concepts before the workshop:
+- Next.js default project structure (checkout the repo)
+- How to run the project: README.md
+- App router 
+	- What is file-based routing?
+	- Creating a new page
+	- Creating dynamic pages
+	- Linking between pages
 
-## Deploy your own
+Don't worry if you don't have enough time to go through all of this contents. We will do a quick refresher in the workshop.
 
-Using the Deploy Button below, you'll deploy the Next.js project as well as connect it to your Contentful space using the Vercel Contentful Integration.
+The main focus of the workshop will be to introduce you to Next.js as a full-stack framework and focus on rendering strategies so you start grasping new and more advanced concepts that will help you in the future.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fcms-contentful&project-name=nextjs-contentful-blog&repository-name=nextjs-contentful-blog&demo-title=Next.js+Blog&demo-description=Static+blog+with+multiple+authors+using+Draft+Mode&demo-url=https%3A%2F%2Fnext-blog-contentful.vercel.app%2F&demo-image=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1625705016%2Ffront%2Fexamples%2FCleanShot_2021-07-07_at_19.43.15_2x.png&integration-ids=oac_aZtAZpDfT1lX3zrnWy7KT9VA&env=CONTENTFUL_PREVIEW_SECRET&envDescription=Any%20URL%20friendly%20value%20to%20secure%20Draft%20Mode)
 
-### Related examples
-
-- [AgilityCMS](/examples/cms-agilitycms)
-- [Builder.io](/examples/cms-builder-io)
-- [ButterCMS](/examples/cms-buttercms)
-- [Contentful](/examples/cms-contentful)
-- [Cosmic](/examples/cms-cosmic)
-- [DatoCMS](/examples/cms-datocms)
-- [DotCMS](/examples/cms-dotcms)
-- [Drupal](/examples/cms-drupal)
-- [Enterspeed](/examples/cms-enterspeed)
-- [Ghost](/examples/cms-ghost)
-- [GraphCMS](/examples/cms-graphcms)
-- [Kontent](/examples/cms-kontent-ai)
-- [Prepr](/examples/cms-prepr)
-- [Prismic](/examples/cms-prismic)
-- [Sanity](/examples/cms-sanity)
-- [Sitefinity](/examples/cms-sitefinity)
-- [Storyblok](/examples/cms-storyblok)
-- [TakeShape](/examples/cms-takeshape)
-- [Umbraco heartcore](/examples/cms-umbraco-heartcore)
-- [Webiny](/examples/cms-webiny)
-- [Blog Starter](/examples/blog-starter)
-- [WordPress](/examples/cms-wordpress)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## How to run the project
 
 ```bash
-npx create-next-app --example cms-contentful cms-contentful-app
+npm install
 ```
+
+Create a `.env.local` file at the root level and add the following environment variables:
+```
+CONTENTFUL_SPACE_ID=...
+CONTENTFUL_ACCESS_TOKEN=...
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
+```
+Where do I get the values of these variables from? They will be provided in private through Slack. We are now a developer team and we don't post any secrets in public 😉
 
 ```bash
-yarn create next-app --example cms-contentful cms-contentful-app
+npm run dev
 ```
 
-```bash
-pnpm create next-app --example cms-contentful cms-contentful-app
-```
+>This setup connects you to my own Contentful account to fetch content from it. If you want to create your own Contentful account and populate it with content you can fetch from, follow the next steps:
 
-## Configuration
+## Configure your own Contentful account
 
 ### Step 1. Create an account and a space on Contentful
 
@@ -177,12 +170,6 @@ Next, create another entry with the content type **Post**:
 
 From your contentful space, go to **Settings > API keys**. There will be an example Content delivery / preview token - you can use these API keys. (You may also create a new key.)
 
-Next, copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
-
-```bash
-cp .env.local.example .env.local
-```
-
 Then set each variable on `.env.local`:
 
 - `CONTENTFUL_SPACE_ID` should be the **Space ID** field of your API Key
@@ -195,10 +182,8 @@ Your `.env.local` file should look like this:
 
 ```bash
 CONTENTFUL_SPACE_ID=...
+CONTENTFUL_ENVIRONMENT=...
 CONTENTFUL_ACCESS_TOKEN=...
-CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
-CONTENTFUL_PREVIEW_SECRET=...
-CONTENTFUL_REVALIDATE_SECRET=...
 ```
 
 ### Step 6. Run Next.js in development mode
@@ -206,88 +191,6 @@ CONTENTFUL_REVALIDATE_SECRET=...
 ```bash
 npm install
 npm run dev
-
-# or
-
-yarn install
-yarn dev
 ```
 
 Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
-
-### Step 7. Try Draft Mode
-
-In your Contentful space, go to **Settings > Content preview** and add a new content preview for development.
-
-The **Name** field may be anything, like `Development`. Then, under **Content preview URLs**, check **Post** and set its value to:
-
-```
-http://localhost:3000/api/draft?secret=<CONTENTFUL_PREVIEW_SECRET>&slug={entry.fields.slug}
-```
-
-Replace `<CONTENTFUL_PREVIEW_SECRET>` with its respective value in `.env.local`.
-
-![Content preview setup](https://github.com/vercel/next.js/assets/9113740/f1383d68-ea2b-4adf-974f-235b8c098745)
-
-Once saved, go to one of the posts you've created and:
-
-- **Update the title**. For example, you can add `[Draft]` in front of the title.
-- The state of the post will switch to **CHANGED** automatically. **Do not** publish it. By doing this, the post will be in draft state.
-- In the sidebar, you will see the **Open preview** button. Click on it!
-
-![Content entry overview](https://github.com/vercel/next.js/assets/9113740/cc0dff9a-c57e-4ec4-85f1-22ab74af2b6b)
-
-You will now be able to see the updated title. To manually exit Draft Mode, you can navigate to `/api/disable-draft` in the browser.
-
-### Step 8. Deploy on Vercel
-
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-#### Deploy Your Local Project
-
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
-
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
-
-#### Deploy from Our Template
-
-Alternatively, you can deploy using our template by clicking on the Deploy button below.
-
-This will deploy the Next.js project as well as connect it to your Contentful space using the Vercel Contentful Integration. If you are using Draft Mode, make sure to add `CONTENTFUL_PREVIEW_SECRET` as an [Environment Variable](https://vercel.com/docs/concepts/projects/environment-variables) as well.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fcms-contentful&project-name=nextjs-contentful-blog&repository-name=nextjs-contentful-blog&demo-title=Next.js+Blog&demo-description=Static+blog+with+multiple+authors+using+Draft+Mode&demo-url=https%3A%2F%2Fnext-blog-contentful.vercel.app%2F&demo-image=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1625705016%2Ffront%2Fexamples%2FCleanShot_2021-07-07_at_19.43.15_2x.png&integration-ids=oac_aZtAZpDfT1lX3zrnWy7KT9VA&env=CONTENTFUL_PREVIEW_SECRET,CONTENTFUL_REVALIDATE_SECRET&envDescription=Any%20URL%20friendly%20value%20to%20secure%20Your%20App)
-
-### Step 9. Try using On-Demand Revalidation
-
-In your Contentful space, go to **Settings > Webhooks** and add a new webhook:
-
-- **Give the webhook a name**
-- **Activate:** Check the activate checkbox to ensure the webhook is marked as active
-- **Specify the POST URL:** Using the URL from your Vercel deployment in step 8, add the path `/api/revalidate` at the end, so it would look something like:
-
-  ```
-  https://<YOUR_VERCEL_DEPLOYMENT_URL>/api/revalidate
-  ```
-
-  Replace `<YOUR_VERCEL_DEPLOYMENT_URL>` with your own deployment URL as noted in the Vercel dashboard.
-
-- **Specify Triggers:** You can choose to trigger for all events or specific events only, such as the Publishing and Unpublishing of Entries and Assets, as shown below.
-
-  ![Content webhook url](https://github.com/vercel/next.js/assets/9113740/c8df492a-57d6-42a1-8a3c-b0de3d6ad42f)
-
-- **Specify Secret Header:** Add a secret header named `x-vercel-reval-key` and enter the value of the
-  `CONTENTFUL_REVALIDATE_SECRET` from before.
-
-  ![Content secret header](https://github.com/vercel/next.js/assets/9113740/574935e6-0d31-4e4f-b914-8b01bdf03d5e)
-
-- **Set Content type:** Set content type to `application/json` in the dropdown.
-
-  ![Content publish changes](https://github.com/vercel/next.js/assets/9113740/78bd856c-ece1-4bf3-a330-1d544abd858d)
-
-- **Edit post:** Now, try editing the title of one of your blog posts in Contentful and click Publish. You should see the changed reflected in the website you just deployed, all without triggering a build! Behind the scenes a call was made to the revalidate api that triggers a revalidation of both the landing page and the specific post that was changed.
-
-  ![Content publish changes](https://github.com/vercel/next.js/assets/9113740/ad96bfa7-89c1-4e46-9d9c-9067176c9769)
-
-- **Verify:** You can verify if your request was made successfully by checking the webhook request log on Contentful and checking for a successful 200 status code, or by having your functions tab open on Vercel when committing the change (log drains may also be used). If you are experiencing issues with the api call, ensure you have correctly entered in the value for environment variable `CONTENTFUL_REVALIDATE_SECRET` within your Vercel deployment.
-
-  ![Content successful request](https://github.com/vercel/next.js/assets/9113740/ed1ffbe9-4dbf-4ec6-9c1f-39c8949c4d38)

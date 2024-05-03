@@ -28,10 +28,6 @@ The main focus of the workshop will be to introduce you to Next.js as a full-sta
 
 ## How to run the project
 
-```bash
-npm install
-```
-
 Create a `.env.local` file at the root level and add the following environment variables:
 ```
 CONTENTFUL_SPACE_ID=...
@@ -41,10 +37,12 @@ CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
 Where do I get the values of these variables from? They will be provided in private through Slack. We are now a developer team and we don't post any secrets in public 😉
 
 ```bash
+npm install
 npm run dev
 ```
 
->This setup connects you to my own Contentful account to fetch content from it. If you want to create your own Contentful account and populate it with content you can fetch from, follow the next steps:
+
+>This setup connects you to an already created Contentful account to fetch content from it. If you want to create your own Contentful account and populate it with content you can fetch from, follow the next steps:
 
 ## Configure your own Contentful account
 

@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 
 import Date from "../components/Date";
@@ -14,14 +15,14 @@ function HeroPost({
   excerpt,
   author,
   slug,
-}: {
+}: Readonly<{
   title: string;
   coverImage: any;
   date: string;
   excerpt: string;
   author: any;
   slug: string;
-}) {
+}>) {
   return (
     <section>
       <div className="mb-8 md:mb-16">

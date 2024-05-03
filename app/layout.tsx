@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { EXAMPLE_PATH, CMS_NAME, CMS_URL } from "@/lib/constants";
+import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: `Next.js and ${CMS_NAME} Example`,
@@ -19,23 +20,7 @@ function Header() {
       <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
         Blog.
       </h1>
-      <h2 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{" "}
-        <a
-          href="https://nextjs.org/"
-          className="underline hover:text-success duration-200 transition-colors"
-        >
-          Next.js
-        </a>{" "}
-        and{" "}
-        <a
-          href={CMS_URL}
-          className="underline hover:text-success duration-200 transition-colors"
-        >
-          {CMS_NAME}
-        </a>
-        .
-      </h2>
+      <Navbar />
     </section>
   );
 }

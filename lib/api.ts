@@ -39,7 +39,7 @@ async function fetchGraphQL(query: string): Promise<any> {
       },
       body: JSON.stringify({ query }),
       next: { tags: ["posts"] },
-    },
+    }
   ).then((response) => response.json());
 }
 
@@ -72,7 +72,8 @@ export async function getAllPosts(): Promise<any[]> {
           ${POST_GRAPHQL_FIELDS}
         }
       }
-    }`);
+    }`
+  );
   return extractPostEntries(entries);
 }
 
@@ -85,6 +86,7 @@ export async function getAllPostUrls(): Promise<any[]> {
           slug
         }
       }
-    }`);
+    }`
+  );
   return extractPostEntries(entries);
 }

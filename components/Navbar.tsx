@@ -7,10 +7,20 @@ const Navbar = () => {
   const activePath = usePathname();
   return (
     <div>
-      <Link href="/add-post" className={`mr-5 ${activePath.startsWith("/add-post") ? "font-bold" : undefined}`}>
+      <Link
+        href="/add-post"
+        className={`mr-5 ${
+          activePath.startsWith("/add-post") ? "font-bold" : undefined
+        }`}
+      >
         Add post
       </Link>
-      <Link href="/about" className={`mr-5 ${activePath.startsWith("/about") ? "font-bold" : undefined}`}>
+      <Link
+        href="/about"
+        className={`mr-5 ${
+          activePath.startsWith("/about") ? "font-bold" : undefined
+        }`}
+      >
         About
       </Link>
     </div>

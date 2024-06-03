@@ -54,6 +54,3 @@ npm run dev
 > This setup connects you to an already created Contentful account to fetch content from. If you want to create and use your own Contentful account, follow the dedicated guide [here](/README_configure_Contentful.md).
 > <br/>
 > It is not required to have your own Contenful account (as you can utilize the already setup account) and it takes time to get it working, so evaluate your time and energy resources wisely.
-
-3.  - <!-- A small task to change something, take a screenshot of it running and reflected on the screen and post in slack?
-      (To make sure all the participants get it setup and running and keep track of how the preparation is going.)  -->

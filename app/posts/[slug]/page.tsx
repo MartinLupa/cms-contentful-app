@@ -1,10 +1,7 @@
-// "use client"
 import Link from "next/link";
-
 import Avatar from "@/components/Avatar";
 import Date from "@/components/Date";
 import CoverImage from "@/components/CoverImage";
-
 import { Markdown } from "@/lib/markdown";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 

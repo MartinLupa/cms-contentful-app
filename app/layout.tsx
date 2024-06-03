@@ -1,7 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
-import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: `Next.js and ${CMS_NAME} Example`,
@@ -20,8 +19,7 @@ function Header() {
       <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
         Blog.
       </h1>
-      <Navbar />
-    </section>
+     </section>
   );
 }
 

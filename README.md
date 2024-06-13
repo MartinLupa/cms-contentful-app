@@ -49,9 +49,11 @@ CONTENTFUL_ACCESS_TOKEN=<access token value>
 The values for these variables will be provided in private through Slack. We are now a developer team and we don't post any secrets in public 😉
 
 
-> This setup connects you to an already created Contentful account. If you want to create and use your own Contentful account to fetch content from, follow the dedicated guide [here](/README_configure_Contentful.md).
+> This setup connects you to an already created Contentful account, you just need to ask for the values. If you want to create and use your own Contentful account to fetch content from, follow the dedicated guide [here](/README_configure_Contentful.md).
 > <br/>
 > Note that it is not required to have your own Contenful account (as you can utilize the already setup account) and it takes some effort to get it working, so evaluate your time and energy resources wisely.
+
+<br/>
 
 2. After having setup the `.env.local` file, install dependencies and run the project:
 

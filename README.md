@@ -41,9 +41,9 @@ Initial actions:
 1. Create a `.env.local` file at the root level and add the following environment variables:
 
 ```
-CONTENTFUL_SPACE_ID=...
-CONTENTFUL_ACCESS_TOKEN=...
-CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
+CONTENTFUL_SPACE_ID=<space id value>
+CONTENTFUL_ENVIRONMENT=<environment value>
+CONTENTFUL_ACCESS_TOKEN=<access token value>
 ```
 
 The values for these variables will be provided in private through Slack. We are now a developer team and we don't post any secrets in public 😉
@@ -59,13 +59,19 @@ The values for these variables will be provided in private through Slack. We are
 npm install
 npm run dev
 ```
+<br/>
+
+❗If you get an error like below, that is a setup issue on your side - you are not fetching any data. Consider why. 
+
+<img src="./assets/fetching-error.png"  width="400"/>
+
 
 <br/>
 
 3. Change "Blog." that is visible in the homepage to your name, take a screenshot of the homepage, and post it in the workshop Slack channel.  
 Example:
 
-<img src="./example.png"  width="300"/>
+<img src="./assets/example.png"  width="400"/>
 
 <br/>
 <hr>

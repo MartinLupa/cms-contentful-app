@@ -41,17 +41,19 @@ Initial actions:
 1. Create a `.env.local` file at the root level and add the following environment variables:
 
 ```
-CONTENTFUL_SPACE_ID=...
-CONTENTFUL_ACCESS_TOKEN=...
-CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
+CONTENTFUL_SPACE_ID=<space id value>
+CONTENTFUL_ENVIRONMENT=<environment value>
+CONTENTFUL_ACCESS_TOKEN=<access token value>
 ```
 
 The values for these variables will be provided in private through Slack. We are now a developer team and we don't post any secrets in public 😉
 
 
-> This setup connects you to an already created Contentful account. If you want to create and use your own Contentful account to fetch content from, follow the dedicated guide [here](/README_configure_Contentful.md).
+> This setup connects you to an already created Contentful account, you just need to ask for the values. If you want to create and use your own Contentful account to fetch content from, follow the dedicated guide [here](/README_configure_Contentful.md).
 > <br/>
 > Note that it is not required to have your own Contenful account (as you can utilize the already setup account) and it takes some effort to get it working, so evaluate your time and energy resources wisely.
+
+<br/>
 
 2. After having setup the `.env.local` file, install dependencies and run the project:
 
@@ -59,13 +61,19 @@ The values for these variables will be provided in private through Slack. We are
 npm install
 npm run dev
 ```
+<br/>
+
+❗If you get an error like below, that is a setup issue on your side - you are not fetching any data. Consider why. 
+
+<img src="./assets/fetching-error.png"  width="400"/>
+
 
 <br/>
 
 3. Change "Blog." that is visible in the homepage to your name, take a screenshot of the homepage, and post it in the workshop Slack channel.  
 Example:
 
-<img src="./example.png"  width="300"/>
+<img src="./assets/example.png"  width="400"/>
 
 <br/>
 <hr>
